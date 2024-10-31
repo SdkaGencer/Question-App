@@ -12,7 +12,7 @@ export function Result({ correct, incorrect, userAnswers, questions }) {
             {questions.map((question, index) => (
                 <div key={index}>
                     <p>{index + 1}. Soru:</p>
-                    <p>Cevabınız: {userAnswers[index]}</p>
+                    <p>Cevabınız: {userAnswers[index] || "Cevap verilmedi" }</p>
                     <p>Doğru Cevap: {question.answer}</p>
                 </div>
             ))}

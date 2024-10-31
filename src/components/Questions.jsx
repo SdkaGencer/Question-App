@@ -8,9 +8,12 @@ export function Questions({questionData, currentQuestionIndex,setCurrentQuestion
      // Cevap seçildiğinde bir sonraki soruya geç
      const handleAnswerClick = (option) => {
         setShowOptions(false); // Cevap seçildiğinde seçenekleri gizle
-        // Kullanıcının cevabını userAnswers dizisine ekle
-        setUserAnswers((prevAnswers) => [...prevAnswers, option]);
-
+        // Kullanıcının cevabını userAnswers dizisine ekle  //BURAYI EKLEDİM
+        setUserAnswers((prevAnswers) => {
+            const newAnswers = [...prevAnswers];
+            newAnswers[currentQuestionIndex] = option; // Cevabı kaydet
+            return newAnswers;
+        });
          // Cevap kontrolü result için yine
         // Doğru cevabı kontrol et
     if (option === questionData.answer) {
@@ -30,12 +33,23 @@ export function Questions({questionData, currentQuestionIndex,setCurrentQuestion
    // 30 saniye sonra bir sonraki soruya geçiş
    useEffect(() => {
     const timer = setTimeout(() => {
-        // Süre dolduğunda cevap verilmediğini belirt
+        // Süre dolduğunda cevap verilmediğini belirt  //BURAYI EKLEDİM
         if (!showOptions) {
-            setUserAnswers((prevAnswers) => [...prevAnswers, "Cevap verilmedi"]);
+            setUserAnswers((prevAnswers) => {
+                const newAnswers = [...prevAnswers];
+                newAnswers[currentQuestionIndex] = "Cevap verilmedi"; // Cevap verilmedi kaydet
+                return newAnswers;
+            });
         }
-        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-    }, 30000);
+         
+        
+        if (currentQuestionIndex >= questions.length - 1) {   //son soru için
+            setScreen("result");
+        } else {
+            setCurrentQuestionIndex(currentQuestionIndex + 1);  
+        }
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }, 3000);
 
     return () => clearTimeout(timer);
 }, [currentQuestionIndex]);
@@ -44,7 +58,7 @@ export function Questions({questionData, currentQuestionIndex,setCurrentQuestion
         setShowOptions(false); // Her yeni soru için seçenekleri gizle
         const timer = setTimeout(() => {
             setShowOptions(true); // 4 saniye sonra seçenekleri göster
-        }, 4000);
+        }, 1000);
 
         return () => clearTimeout(timer);
     }, [currentQuestionIndex]); // currentQuestionIndex değiştiğinde çalışır
