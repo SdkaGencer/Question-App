@@ -31,9 +31,9 @@ function App() {
 
   return (
     <>
-       {screen === "start" && <Start onStart={startTest} />} {/* Başlangıç ekranı */}
+       {screen === "start" && <Start onStart={startTest} />} {/* Başlangıç ekranıyla açılcak ekran */}
         {screen === "questions" && (
-            <Questions 
+            <Questions            
                 questionData={currentQuestion} 
                 setCurrentQuestionIndex={setCurrentQuestionIndex} 
                 currentQuestionIndex={currentQuestionIndex} 

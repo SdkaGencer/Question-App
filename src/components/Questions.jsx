@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-export function Questions({questionData, currentQuestionIndex,setCurrentQuestionIndex, setCorrectAnswers, setIncorrectAnswers,  setUserAnswers, setScreen, questions }){
+export function Questions({questionData, currentQuestionIndex,setCurrentQuestionIndex, setCorrectAnswers, setIncorrectAnswers,  setUserAnswers, setScreen, questions, }){
 
 
     const [showOptions, setShowOptions] = useState(false);//şıkların 4 saniye gecikmesi 
@@ -19,7 +19,7 @@ export function Questions({questionData, currentQuestionIndex,setCurrentQuestion
     if (option === questionData.answer) {
         setCorrectAnswers((prev) => prev + 1); // Doğru sayısını artır
     } else {
-        setIncorrectAnswers((prev) => prev + 1); // Yanlış sayısını artır
+        setIncorrectAnswers((prev) => prev + 1); // Yanlış sayısını artır 
     }
         // Sorular bittiğinde sonuç ekranını göster
     if (currentQuestionIndex >= questions.length - 1) {
@@ -33,13 +33,14 @@ export function Questions({questionData, currentQuestionIndex,setCurrentQuestion
    // 30 saniye sonra bir sonraki soruya geçiş
    useEffect(() => {
     const timer = setTimeout(() => {
-        // Süre dolduğunda cevap verilmediğini belirt  //BURAYI EKLEDİM
+        // Süre dolduğunda cevap verilmediğini belirt  
         if (!showOptions) {
             setUserAnswers((prevAnswers) => {
                 const newAnswers = [...prevAnswers];
                 newAnswers[currentQuestionIndex] = "Cevap verilmedi"; // Cevap verilmedi kaydet
                 return newAnswers;
             });
+           
         }
          
         
