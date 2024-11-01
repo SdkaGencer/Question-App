@@ -1,6 +1,6 @@
 #Live link:
 
-https://672282e55e09e133d5d702d9--celadon-frangipane-779ce5.netlify.app/
+https://funny-questions.netlify.app/
 
 
 
