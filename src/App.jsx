@@ -8,10 +8,10 @@ import { Result } from './components/Results'; //results componentimin importu
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); //bir ilk değer belirledim. kendim isimlendirdim ve sıfıra eşitledim yanındakiyle değişiklik sağlıcam
   const [testStarted, setTestStarted] = useState(false); // Testin başlamış olup olmadığını kontrol eden durum
-  //result
-  const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
-  const [userAnswers, setUserAnswers] = useState([]);
+  //result kısmı için yanıtların sayısı
+  const [correctAnswers, setCorrectAnswers] = useState(0); //doğru sayısı
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);  //yanlış sayısı
+  const [userAnswers, setUserAnswers] = useState([]); //kullanıcı cevapları
   //akış için
   const [screen, setScreen] = useState("start"); // "start", "questions" veya "result" değerlerini alacak
 
@@ -28,7 +28,7 @@ function App() {
   const currentQuestion = questions[currentQuestionIndex]; //bu şimdi içinde datamın ilk nesnesini barındırıyo
   
   
-
+/* return kısmında propslarımı yazıyorum ve sonrasında ilgili componente de props geçiyorum */
   return (
     <>
        {screen === "start" && <Start onStart={startTest} />} {/* Başlangıç ekranıyla açılcak ekran */}

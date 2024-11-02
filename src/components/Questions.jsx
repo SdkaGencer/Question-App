@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 export function Questions({questionData, currentQuestionIndex,setCurrentQuestionIndex, setCorrectAnswers, setIncorrectAnswers,  setUserAnswers, setScreen, questions, }){
 
 
-    const [showOptions, setShowOptions] = useState(false);//şıkların 4 saniye gecikmesi 
+    const [showOptions, setShowOptions] = useState(false);//şıkların 4 saniye gecikmesi olayı 
 
 
      // Cevap seçildiğinde bir sonraki soruya geç
      const handleAnswerClick = (option) => {
         setShowOptions(false); // Cevap seçildiğinde seçenekleri gizle
-        // Kullanıcının cevabını userAnswers dizisine ekle  //BURAYI EKLEDİM
+        // Kullanıcının cevabını userAnswers dizisine ekle 
         setUserAnswers((prevAnswers) => {
             const newAnswers = [...prevAnswers];
             newAnswers[currentQuestionIndex] = option; // Cevabı kaydet
@@ -44,13 +44,13 @@ export function Questions({questionData, currentQuestionIndex,setCurrentQuestion
         }
          
         
-        if (currentQuestionIndex >= questions.length - 1) {   //son soru için
+        if (currentQuestionIndex >= questions.length - 1) {   //son soru cevaplanmazsa 30saniye içinde, result kısmına geçilecek
             setScreen("result");
         } else {
-            setCurrentQuestionIndex(currentQuestionIndex + 1);  
+            setCurrentQuestionIndex(currentQuestionIndex + 1);  //son soruda değilsek diğer soruya geçiş yapılıcak
         }
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-    }, 3000);
+        
+    }, 30000);
 
     return () => clearTimeout(timer);
 }, [currentQuestionIndex]);
@@ -59,7 +59,7 @@ export function Questions({questionData, currentQuestionIndex,setCurrentQuestion
         setShowOptions(false); // Her yeni soru için seçenekleri gizle
         const timer = setTimeout(() => {
             setShowOptions(true); // 4 saniye sonra seçenekleri göster
-        }, 1000);
+        }, 4000);
 
         return () => clearTimeout(timer);
     }, [currentQuestionIndex]); // currentQuestionIndex değiştiğinde çalışır

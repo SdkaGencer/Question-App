@@ -10,7 +10,7 @@ export function Start({onStart}){
             <h2>Sizin için harika sorular hazırladık!</h2>
             <p style={{color:"black"}} >Bu testte 10 ilginç soru sizi bekliyor! Her soruya 30 saniye süreniz var, ancak ilk 4 saniye boyunca cevap seçenekleri görünmeyecek. Test sonunda doğru ve yanlış sayılarınızı öğrenebilirsiniz. İyi şanslar!
             </p>
-            <button id="start" onClick={onStart} >  {/*Burda bi on click kullanıcaz*/}
+            <button id="start" onClick={onStart} >  {/*Burda bi on click kullandık propsa tanımladık*/}
                 Teste Başla
             </button>
             </div>

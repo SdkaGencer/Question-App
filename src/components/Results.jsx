@@ -5,7 +5,7 @@
 export function Result({ correct, incorrect, userAnswers, questions,  }) {
     
     const totalQuestions = questions.length; // Toplam soru sayısı
-    const emptyAnswers = totalQuestions - (correct + incorrect); // Boş cevap sayısını hesapla
+    const emptyAnswers = totalQuestions - (correct + incorrect); // Boş cevap sayısını hesapladık
 
     return (
         <div className="container">
